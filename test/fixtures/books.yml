@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  author: 
+  rating: 1
+  have_read: false
+  genre: MyString
+
+two:
+  title: MyString
+  author: 
+  rating: 1
+  have_read: false
+  genre: MyString
