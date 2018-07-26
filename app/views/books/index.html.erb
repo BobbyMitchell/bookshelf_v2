@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+<%= link_to destroy_user_session_path, method: :delete do %>
+<i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+<% end %>
+<%else %>
+<%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+<% end %>
+<h1>All Books....</h1>
+
+<h2><% @books.each do |book| %></h2>
+<h2><%= link_to book.title, book_path(book)  %></h2>
+<h2><%= book.author %></h2>
+
+
+<h2><%= "*" * book.rating %></h2>
+
+<h3><%= book.have_read ? "You have read this book" : "You have not read this book" %></h3>
+<% end %>
+
+<h2><%= link_to "Add a new book", new_book_path %></h2>
+<h2> <%= link_to "My Bookshelf", my_books_books_path %> </h2>
+<h2> <%= link_to "My Reading List", my_reading_list_books_path %> </h2>
