@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book: one
+  user: one
+  have_or_want: false
+
+two:
+  book: two
+  user: two
+  have_or_want: false
