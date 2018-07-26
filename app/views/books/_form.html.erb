@@ -1,0 +1,32 @@
+<%= form_for @book do |f| %>
+
+<% if @book.errors.any? %>
+<ul>
+  <% @book.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
+
+<%= f.label :title, "Enter title" %>
+<%= f.text_field :title %>
+<%= f.label :author, "Enter author" %>
+<%= f.text_field :author %>
+<%= f.label :genre, "Select genre" %>
+<%= f.select :genre, ['Sci-fi', 'Fantasy', 'other'] %>
+<%= f.label :rating, "Enter rating" %>
+<%= f.text_field :rating %>
+  <table>
+        <tr>
+            <td><%= f.label 'have_read', 'Add to My Bookshelf' %></td>
+            <td><%= f.radio_button :have_read, true %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.label 'have_read', 'Add to My Reading list' %></td>
+            <td><%= f.radio_button :have_read, false %></td>
+        </tr>
+    </table>
+<%= f.submit %>
+<% end %>
