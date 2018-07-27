@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
- #skip_before_action :authenticate_user!, only: [:index, :show]
+ #skip_before_acti  :authenticate_user!, only: [:index, :show]
   before_action :find_book, only: [:show, :edit, :update, :destroy, :add_to_my_bookshelf, :remove_from_my_bookshelf, :add_to_my_reading_list, :remove_from_my_reading_list]
+
 
 
 #My_bookshelf adds and removes books from bookshelf
@@ -59,7 +60,21 @@ def new
 
   def create
     @book = Book.new(book_params)
+
+    #img = {}
+    #img << Get https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=GOOGLE_API_SERVER_KEY
+    #raise
     #if statement so if book does not meet validations it does not lose data
+
+    #search_terms varible made as GoogleBooks.search won't except variables
+    search_terms = "inauthor:#{@book.author}, intitle:#{@book.title}"
+    title = @book.title
+    books = GoogleBooks.search(search_terms)
+    first_book = books.first
+    first_book.authors
+    first_book.isbn #=> '9781443411080'
+    first_book.image_link(:zoom => 6) #=> 'http://bks2.books.google.com/books?id=...'
+    raise
     if @book.save
       #creates the user_books object
       book_user = UserBook.create(book: @book, user: current_user, have_or_want: @book.have_read)
