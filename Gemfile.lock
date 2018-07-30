@@ -251,6 +251,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   capybara (~> 2.13)
+  cloudinary
   coffee-rails
   devise
   googlebooks

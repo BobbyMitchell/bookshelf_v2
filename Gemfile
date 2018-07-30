@@ -22,6 +22,7 @@ gem 'googlebooks'
 gem "attachinary"
 gem "jquery-fileupload-rails"
 gem "coffee-rails"
+gem "cloudinary"
 
 group :development, :test do
   gem "better_errors"
