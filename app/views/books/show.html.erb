@@ -2,6 +2,7 @@
 <h1><%= "by #{@book.author}"  %></h1>
 <h2><%= @book.genre %></h2>
 <h1><%= "*" * @book.rating %></h1>
+<%= cl_image_tag(@book.photo.path, width: 360, height: 240, crop: :fill)  %>
 
 <%= render "user_book_form" %>
 

@@ -23,6 +23,7 @@ gem "attachinary"
 gem "jquery-fileupload-rails"
 gem "coffee-rails"
 gem "cloudinary"
+gem "figaro"
 
 group :development, :test do
   gem "better_errors"

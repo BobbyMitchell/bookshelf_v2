@@ -69,13 +69,14 @@ def new
     #search_terms varible made as GoogleBooks.search won't except variables
     search_terms = "inauthor:#{@book.author}, intitle:#{@book.title}"
     title = @book.title
+
     books = GoogleBooks.search(search_terms)
+
     first_book = books.first
     first_book.authors
     first_book.isbn #=> '9781443411080'
-    first_book.image_link(:zoom => 6) #=> 'http://bks2.books.google.com/books?id=...'
+    first_book.image_link(:zoom => 6) #=> 'http://bks2.books.google.com/books?id=...
     @book.photo_url = first_book.image_link
-    raise
     if @book.save
       #creates the user_books object
       book_user = UserBook.create(book: @book, user: current_user, have_or_want: @book.have_read)
