@@ -74,6 +74,7 @@ def new
     first_book.authors
     first_book.isbn #=> '9781443411080'
     first_book.image_link(:zoom => 6) #=> 'http://bks2.books.google.com/books?id=...'
+    @book.photo_url = first_book.image_link
     raise
     if @book.save
       #creates the user_books object
@@ -107,7 +108,7 @@ def new
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :rating, :have_read, :genre)
+    params.require(:book).permit(:title, :author, :rating, :have_read, :genre, :photo)
   end
   def find_book
     @book = Book.find(params[:id])
