@@ -69,7 +69,7 @@ def new
     #search_terms varible made as GoogleBooks.search won't except variables
     search_terms = "inauthor:#{@book.author}, intitle:#{@book.title}"
     title = @book.title
-    books = GoogleBooks.search(search_terms)
+    books = GoogleBooks.search(search_terms, {:api_key => ''})
     first_book = books.first
     first_book.authors
     first_book.isbn #=> '9781443411080'
