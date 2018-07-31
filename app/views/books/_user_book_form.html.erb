@@ -1,6 +1,8 @@
 
 <!-- if statment with simple forms to edit -change from reading list to bookshelf. and another to destroy. When added to bookcae need to do a rateing and when destroyed need to remove that rating -->
 
+
+
 <% if current_user.books.exclude? @book  %>
 
 
@@ -37,6 +39,9 @@
 <%= simple_form_for [@book, @user_book], url: book_user_books_path(@book, @user_book), method: :post  do |f| %>
 <%= f.input :have_or_want, :as => :hidden,  :input_html => { :checked => true } %>
 <%= f.submit "Remove Book" %>
+
+
+
 <% end %>
 <h1>On bookshelf need option to remove from bookshelf</h1>
 <% end %>
