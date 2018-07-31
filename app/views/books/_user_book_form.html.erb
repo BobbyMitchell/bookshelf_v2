@@ -39,9 +39,19 @@
 <%= simple_form_for [@book, @user_book], url: book_user_books_path(@book, @user_book), method: :post  do |f| %>
 <%= f.input :have_or_want, :as => :hidden,  :input_html => { :checked => true } %>
 <%= f.submit "Remove Book" %>
-
-
-
 <% end %>
+
+
+<% if current_user.user_books.find{|f| f.book_id == @book.id}.rating == nil %>
+
+<%= simple_form_for [@book, @user_book], url: book_user_books_path(@book, @user_book), method: :post  do |f| %>
+<%= f.input :have_or_want, :as => :hidden, :input_html => { :value => true } %>
+<%= f.input :rating %>
+<%= f.submit "Submit Rating" %>
+<% end %>
+<% end %>
+
+
+
 <h1>On bookshelf need option to remove from bookshelf</h1>
 <% end %>
