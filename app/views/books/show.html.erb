@@ -10,6 +10,12 @@
 <% end %>
 
 
+<% if current_user.books.include? @book  %>
+   <% if current_user.user_books.find{|f| f.book_id == @book.id}.rating != nil %>
+<h2><%= current_user.user_books.find{|f| f.book_id == @book.id}.rating %> </h2>
+<% end %>
+<% end %>
+
 
 
 
