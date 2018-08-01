@@ -13,7 +13,7 @@
 <% end %>
 <% end %>
 <div>
-<h2> Avg Rating =<%= @book.user_books.average(:rating) %></h2>
+<h4> Avg Rating =<%= @book.user_books.average(:rating) %> from <%= @book.user_books.count(:rating)  %> ratings</h4>
 </div>
 
 
@@ -22,6 +22,8 @@
 
 
 <%= cl_image_tag(@book.photo.path, width: 256, height: 400, crop: :fill)  %>
+<p><%= @book.description %></p>
+<h4>Page count =<%= @book.page_count %>. ISBN =<%= @book.isbn %></h4>
 
 <%= render "user_book_form" %>
 
