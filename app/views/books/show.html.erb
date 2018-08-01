@@ -1,7 +1,26 @@
+
 <h1><%= @book.title %></h1>
 <h1><%= "by #{@book.author}"  %></h1>
 <h2><%= @book.genre %></h2>
-<h1><%= "*" * @book.rating %></h1>
+
+
+<!-- display current users rating of the book if it exitists -->
+
+<% if current_user.books.include? @book  %>
+   <% if current_user.user_books.find{|f| f.book_id == @book.id}.rating != nil %>
+<h2>Your rating = <%= current_user.user_books.find{|f| f.book_id == @book.id}.rating %> </h2>
+
+<% end %>
+<% end %>
+<div>
+<h2> Avg Rating =<%= @book.user_books.average(:rating) %></h2>
+</div>
+
+
+
+
+
+
 <%= cl_image_tag(@book.photo.path, width: 360, height: 240, crop: :fill)  %>
 
 <%= render "user_book_form" %>
