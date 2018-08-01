@@ -13,7 +13,7 @@
 <% end %>
 <% end %>
 <div>
-<h2> Avg Rating =<%= @book.user_books.average(:rating) %></h2>
+<h4> Avg Rating =<%= @book.user_books.average(:rating) %> from <%= @book.user_books.count(:rating)  %> ratings</h4>
 </div>
 
 
