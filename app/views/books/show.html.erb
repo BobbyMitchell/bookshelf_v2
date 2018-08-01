@@ -22,6 +22,8 @@
 
 
 <%= cl_image_tag(@book.photo.path, width: 256, height: 400, crop: :fill)  %>
+<p><%= @book.description %></p>
+<h4>Page count =<%= @book.page_count %>. ISBN =<%= @book.isbn %></h4>
 
 <%= render "user_book_form" %>
 
