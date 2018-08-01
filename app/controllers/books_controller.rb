@@ -36,6 +36,9 @@ end
     first_book.isbn #=> '9781443411080'
     first_book.image_link(:zoom => 6) #=> 'http://bks2.books.google.com/books?id=...
     @book.photo_url = first_book.image_link
+    @book.description = first_book.description
+    @book.page_count = first_book.page_count
+    @book.isbn = first_book.isbn
     if @book.save
       #creates the user_books object
       book_user = UserBook.create(book: @book, user: current_user, have_or_want: @book.have_read)
