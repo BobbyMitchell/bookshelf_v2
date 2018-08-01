@@ -7,7 +7,7 @@ my_reading_list.html.erb
 
 
 <% if user_book.book.user_books.count(:rating) > 0 %>
-<h4>  <%= user_book.book.user_books.average(:rating) %> (<%= user_book.book.user_books.count(:rating) %> rating)</h4>
+<h4>  <%= user_book.book.user_books.average(:rating).round(1) %> (<%= user_book.book.user_books.count(:rating) %> rating)</h4>
 <% else %>
 <h4>Not rated yet</h4>
 <% end %>
