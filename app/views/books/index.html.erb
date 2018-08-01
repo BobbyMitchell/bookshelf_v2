@@ -10,6 +10,14 @@
 <h2><% @books.each do |book| %></h2>
 <h2><%= link_to book.title, book_path(book)  %></h2>
 <h2><%= book.author %></h2>
+<div>
+  <% if book.user_books.count(:rating) > 0 %>
+<h4><%= book.user_books.average(:rating) %> (<%= book.user_books.count(:rating)%> ratings)</h4>
+<% else %>
+<h4>Not rated yet.</h4>
+<% end %>
+</div>
+
 <%= cl_image_tag(book.photo.path, width: 128, height: 200, crop: :fill)  %>
 <% end %>
 
