@@ -3,7 +3,6 @@
 <% @my_books.each do |user_book| %>
 <h2><%= link_to user_book.book.title, book_path(user_book.book)%></h2>
 <h2><%= user_book.book.author %></h2>
-<h2><%= "*" * user_book.book.rating %></h2>
 <% end %>
 
 <h2><%= link_to "Back to Library", books_path %></h2>
