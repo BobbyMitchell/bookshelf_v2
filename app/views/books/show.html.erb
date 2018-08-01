@@ -13,7 +13,11 @@
 <% end %>
 <% end %>
 <div>
-<h4> Avg Rating =<%= @book.user_books.average(:rating) %> from <%= @book.user_books.count(:rating)  %> ratings</h4>
+  <% if @book.user_books.count(:rating) > 0 %>
+<h4> Avg Rating =<%= @book.user_books.average(:rating).round(1) %> from <%= @book.user_books.count(:rating)  %> ratings</h4>
+<% else %>
+<h4>Not rated yet.</h4>
+<% end %>
 </div>
 
 
