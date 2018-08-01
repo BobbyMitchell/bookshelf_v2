@@ -1,5 +1,5 @@
 
-<!-- if statment with simple forms to edit -change from reading list to bookshelf. and another to destroy. When added to bookcae need to do a rateing and when destroyed need to remove that rating -->
+<!-- if statment with simple forms to edit -change from reading list to bookshelf. and another to destroy. When added to bookcae need to do a rating and when destroyed need to remove that rating -->
 
 
 
@@ -18,9 +18,9 @@
 <%= f.submit "Add to Reading list" %>
 <% end %>
 
-<% elsif @book.user_books[0].have_or_want == false %>
-
 <!-- If is is on the reading list you can add to bookshelf(changes have_or_want to true) or can remove from reading list (delete user_book instance) -->
+<% elsif current_user.user_books.find{|f| f.book_id == @book.id}.have_or_want == false %>
+
 
 <%= simple_form_for [@book, @user_book], url: book_user_books_path(@book, @user_book), method: :post  do |f| %>
 <%= f.input :have_or_want, :as => :hidden, :input_html => { :value => true } %>
@@ -34,7 +34,7 @@
 
 
 <% else %>
-<!-- It is on the bookshelf so option to remove - user_books#destroy?  -->
+<!-- It is on the bookshelf so option to remove and option to rate if not done already -->
 
 <%= simple_form_for [@book, @user_book], url: book_user_books_path(@book, @user_book), method: :post  do |f| %>
 <%= f.input :have_or_want, :as => :hidden,  :input_html => { :checked => true } %>
