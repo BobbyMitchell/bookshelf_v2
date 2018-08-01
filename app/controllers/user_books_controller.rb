@@ -1,27 +1,17 @@
 class UserBooksController < ApplicationController
 
 
-  #to show either bookshelf or reading list. one my use another method
-  # def index
-  #   @my_books = current_user.user_books.where(have_or_want: true)
-  # end
 
-  # def my_reading_list
-  #   @my_books = current_user.user_books.where(have_or_want: false)
-  # end
-
-  #not needed
   def show
 
   end
+
   #created by the books_controller
   def new
-    @user = current_user
-    @user_book = UserBook.new(user_book_params)
 
   end
 
-  #created by the books_controller
+  #when a book is created the user book is created in the books controller
   def create
     @book = Book.find(params[:book_id])
     @user_book = UserBook.new(user_book_params)
@@ -33,14 +23,13 @@ class UserBooksController < ApplicationController
   end
 
   def edit
-    raise
     @book = Book.find(params[:book_id])
     @user = current_user
     @user_book = UserBook.find(params[:id])
-
   end
 
-  #when book is changed from reading list to bookshelf
+
+  # Not currently used as unable to access from books#show
   def update
     raise
     @book = Book.find(params[:book_id])

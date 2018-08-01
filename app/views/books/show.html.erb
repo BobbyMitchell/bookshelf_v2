@@ -33,8 +33,6 @@
 <h2><% @book.users do |user| %></h2>
 <h2><%= user.email %></h2>
 <% end %>
-
-<h3><%= @book.have_read ? "You have read this book" : "You have not read this book" %></h3>
 <h2><%= link_to "Edit this book", edit_book_path %></h2>
 <h2><%= link_to "Back to Library", books_path %></h2>
 <h2> <%= link_to "My Bookshelf", my_books_books_path %> </h2>

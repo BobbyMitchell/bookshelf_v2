@@ -11,10 +11,6 @@
 <h2><%= link_to book.title, book_path(book)  %></h2>
 <h2><%= book.author %></h2>
 
-
-
-
-<h3><%= book.have_read ? "You have read this book" : "You have not read this book" %></h3>
 <% end %>
 
 <h2><%= link_to "Add a new book", new_book_path %></h2>
