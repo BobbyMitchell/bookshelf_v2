@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
- #skip_before_acti  :authenticate_user!, only: [:index, :show]
+ skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :find_book, only: [:show, :edit, :update, :destroy, :add_to_my_bookshelf, :remove_from_my_bookshelf, :add_to_my_reading_list, :remove_from_my_reading_list]
 
 
