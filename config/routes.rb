@@ -5,15 +5,17 @@ Rails.application.routes.draw do
  resources :books do
   resources :user_books do
     end
+     get 'books/:user_id', to: 'books#their_books'
+
   collection do
     get "my_books", to: "books#my_books"
     get "my_reading_list", to: "books#my_reading_list"
     end
   # member do
-  #   get "add_to_my_bookshelf", to: "books#add_to_my_bookshelf"
-  #   get "remove_from_my_bookshelf", to: "books#remove_from_my_bookshelf"
-  #   get "add_to_my_reading_list", to: "books#add_to_my_reading_list"
-  #   get "remove_from_my_bookshelf", to: "books#remove_from_my_bookshelf"
+    # get "add_to_my_bookshelf", to: "books#add_to_my_bookshelf"
+    # get "remove_from_my_bookshelf", to: "books#remove_from_my_bookshelf"
+    # get "add_to_my_reading_list", to: "books#add_to_my_reading_list"
+    # get "remove_from_my_bookshelf", to: "books#remove_from_my_bookshelf"
   # end
  end
  root to: "books#index"

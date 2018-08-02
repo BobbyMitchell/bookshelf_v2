@@ -1,8 +1,13 @@
 class UserBooksController < ApplicationController
 
 
+  def index
+    raise
+  end
 
   def show
+    x = params[:id].to_i
+    @their_books = UserBook.where(user: x)
 
   end
 
@@ -46,28 +51,30 @@ class UserBooksController < ApplicationController
   private
   #user_id on params?
   def user_book_params
-    params.require(:user_book).permit(:book_id, :have_or_want, :rating, :_destroy)
+    params.require(:user_book).permit(:book_id, :have_or_want, :rating, :user_id, :_destroy)
   end
 
+
+  # As a new user book is created instead of the oringinal edited this mehod deletes either the one which is not needed or both.
   def destroy_multiple
     user_book_array = current_user.user_books.where(user: current_user, book: @book)
-
+    #if a user book is 'changed' there will be 2 instances. A 'new' user_book will only have on instance so will not be effected.
     if user_book_array.length == 2
-
       x = user_book_array.first
       y = user_book_array.last
-        if x.have_or_want == false && y.have_or_want == false
-           current_user.user_books.destroy_all
-        elsif x.have_or_want == false
-          x.destroy
-        elsif x.have_or_want == true && y.have_or_want == true
-          x.destroy
-
-        else
-        current_user.user_books.destroy_all
-
-        end
-
+      #remove from reading list
+      if x.have_or_want == false && y.have_or_want == false
+         current_user.user_books.destroy_all
+      #move to bookshelf from reading list
+      elsif x.have_or_want == false
+        x.destroy
+      #on bookshelf and rating added
+      elsif x.have_or_want == true && y.have_or_want == true
+        x.destroy
+      #removed from bookshelf
+      else
+      current_user.user_books.destroy_all
+      end
     end
   end
 
