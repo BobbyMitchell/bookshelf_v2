@@ -33,6 +33,7 @@
 <% @book.users.each do |user| %>
 <%= user[:email]  %>
 <%= user.user_books.find{|f| f.book_id == @book.id}.rating %>
+
 <% end %>
 
 
