@@ -1,16 +1,22 @@
 class BooksController < ApplicationController
  skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :find_book, only: [:show, :edit, :update, :destroy, :add_to_my_bookshelf, :remove_from_my_bookshelf, :add_to_my_reading_list, :remove_from_my_reading_list]
+before_action :find_book, only: [:show, :edit, :update, :destroy, :add_to_my_bookshelf, :remove_from_my_bookshelf, :add_to_my_reading_list, :remove_from_my_reading_list]
 
-
-
+ #returns user_books
  def my_books
    @my_books = current_user.user_books.where(have_or_want: true)
  end
-
+ #returns user_books
  def my_reading_list
    @my_reading_list = current_user.user_books.where(have_or_want: false)
  end
+
+ # def their_books
+ #  raise
+ #    @their_books = user_books.where(user_id == pararms[:user_id] && have_or_want == true )
+ # end
+
+
 
 
 def index
@@ -61,7 +67,7 @@ end
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :genre, :photo)
+    params.require(:book).permit(:title, :author, :genre, :photo, :user_id)
   end
   def find_book
     @book = Book.find(params[:id])

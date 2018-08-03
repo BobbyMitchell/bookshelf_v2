@@ -31,11 +31,18 @@
 
 
 <% @book.users.each do |user| %>
-<%= user[:username]  %>
+<%= link_to user[:username], book_user_book_path(@book, @book.user_books)   %>
 <%= user.user_books.find{|f| f.book_id == @book.id}.rating %>
-
 <% end %>
 
+<% @book.users.each do |user| %>
+<% if user !=current_user %>
+<%= simple_form_for [@book, user], url: book_user_book_path(@book, user), method: :get  do |f| %>
+<%= f.input :have_or_want, :as => :hidden, :input_html => { :value => true } %>
+<%= f.submit "#{user[:username]}-#{user.user_books.find{|f| f.book_id == @book.id}.rating}" %>
+<% end %>
+<% end %>
+<% end %>
 
 
 
