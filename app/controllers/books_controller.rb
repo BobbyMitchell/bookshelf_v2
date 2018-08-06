@@ -40,8 +40,15 @@ def new
 end
 
 def create
-  @book = Book.find_or_create_by(book_params)
 
+
+    @book_search = Book.new(book_params)
+    # This capitalises the search terms to prevent duplicate books with differant letter cases
+    title_cap = @book_search.title.split.map(&:capitalize).join(' ')
+    author_cap = @book_search.author.split.map(&:capitalize).join(' ')
+
+    @book = Book.find_or_create_by(title: title_cap, author: author_cap)
+    raise
     #search_terms varible made as GoogleBooks.search won't except variables
     search_terms = "inauthor:#{@book.author}, intitle:#{@book.title} {:count => 10}"
     title = @book.title
