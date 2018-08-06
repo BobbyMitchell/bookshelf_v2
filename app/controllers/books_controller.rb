@@ -49,7 +49,7 @@ def create
     #@book = Book.find_or_create_by(title: title_cap, author: author_cap)
 
     #search_terms varible made as GoogleBooks.search won't except variables
-    search_terms = "inauthor:#{@book.author}, intitle:#{@book.title} {:count => 10}"
+    search_terms = "inauthor:#{@book.author}, intitle:#{@book.title}, subject: 'Fiction'"
     title = @book.title
     google_books = GoogleBooks.search(search_terms)
     #redirect_to select_book_books_path(@google_books)
@@ -65,6 +65,7 @@ def create
       book.page_count = first_book.page_count
       book.isbn = first_book.isbn
       book.created_by = current_user.id
+      raise
     end
 
     # if @book.save
