@@ -42,39 +42,45 @@ end
 def create
 
 
-    @book_search = Book.new(book_params)
+    @book = Book.new(book_params)
     # This capitalises the search terms to prevent duplicate books with differant letter cases
-    title_cap = @book_search.title.split.map(&:capitalize).join(' ')
-    author_cap = @book_search.author.split.map(&:capitalize).join(' ')
+    #title_cap = @book_search.title.split.map(&:capitalize).join(' ')
+    #author_cap = @book_search.author.split.map(&:capitalize).join(' ')
+    #@book = Book.find_or_create_by(title: title_cap, author: author_cap)
 
-    @book = Book.find_or_create_by(title: title_cap, author: author_cap)
-    raise
     #search_terms varible made as GoogleBooks.search won't except variables
     search_terms = "inauthor:#{@book.author}, intitle:#{@book.title} {:count => 10}"
     title = @book.title
     google_books = GoogleBooks.search(search_terms)
-    #select_book(google_books)
-    # google_books.each do |book|
-    #   @google_books << book
-    # end
-    # redirect_to select_book_books_path(@google_books)
+    #redirect_to select_book_books_path(@google_books)
     first_book = google_books.first
-    # first_book.authors
-    # first_book.isbn #=> '9781443411080'
-    # first_book.image_link(:zoom => 6) #=> 'http://bks2.books.google.com/books?id=...
-    @book.photo_url = first_book.image_link
-    @book.description = first_book.description
-    @book.page_count = first_book.page_count
-    @book.isbn = first_book.isbn
+    first_book.image_link(:zoom => 6)
+    # title and autors changed from search terms to prevent duplication. ie having Tolkien and J R Tolkien being differant authors
+    @book.title = first_book.title
+    @book.author = first_book.authors
+    #Finf the book if it exists with the same title and author, if not creates it.
+    @book = Book.where(title: @book.title, author: @book.author).first_or_create do |book|
+      book.photo_url = first_book.image_link
+      book.description = first_book.description
+      book.page_count = first_book.page_count
+      book.isbn = first_book.isbn
+    end
+
+    # if @book.save
+    #creates the user_books object
     if @book.save
-      #creates the user_books object
-      book_user = UserBook.create(book: @book, user: current_user, have_or_want: @book.have_read)
-      redirect_to books_path
-    else
+
+    #book_user = UserBook.create(book: @book, user: current_user, have_or_want: @book.have_read)
+    redirect_to book_path(@book)
+     else
       render :new
     end
 
+    # end
+
 end
+
+
 
   def edit
   end
