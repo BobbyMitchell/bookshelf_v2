@@ -5,10 +5,10 @@ class UserBooksController < ApplicationController
     raise
   end
 
+  #currently being used to show other users bookcases. To be moved.
   def show
     x = params[:id].to_i
     @their_books = UserBook.where(user: x)
-
   end
 
   #created by the books_controller

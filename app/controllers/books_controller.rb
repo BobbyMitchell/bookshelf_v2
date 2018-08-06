@@ -64,6 +64,7 @@ def create
       book.description = first_book.description
       book.page_count = first_book.page_count
       book.isbn = first_book.isbn
+      book.created_by = current_user.id
     end
 
     # if @book.save
@@ -75,10 +76,7 @@ def create
      else
       render :new
     end
-
-    # end
-
-end
+  end
 
 
 
@@ -89,6 +87,8 @@ end
   end
 
   def destroy
+    @book.destroy
+    redirect_to new_book_path
   end
 
   private

@@ -16,9 +16,13 @@
   <% if @book.user_books.count(:rating) > 0 %>
   <h4> Avg Rating =<%= @book.user_books.average(:rating).round(1) %> from <%= @book.user_books.count(:rating)  %> ratings</h4>
   <% else %>
-  <h4>Not rated yet.</h4>
+
   <% end %>
 </div>
+  <!-- If statement to identify if the books has just been added to give option to delete if wrong book -->
+  <% if @book.created_by == current_user.id && @book.user_books.count == 0 && @book=Book.last %>
+   <h2><%= link_to "Not the book you're looking for?", book_path(@book), method: :delete  %></h2>
+  <% end %>
 
 
 <%= cl_image_tag(@book.photo.path, width: 256, height: 400, crop: :fill)  %>
