@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   collection do
     get "my_books", to: "books#my_books"
     get "my_reading_list", to: "books#my_reading_list"
+    get "select_book", to: "books#select_book"
     end
   # member do
     # get "add_to_my_bookshelf", to: "books#add_to_my_bookshelf"
