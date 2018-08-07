@@ -5,4 +5,6 @@ class Book < ApplicationRecord
   accepts_nested_attributes_for :users,  allow_destroy: true
   has_attachment :photo
   validates :title, :author, presence: true
+  has_many :comments
+  accepts_nested_attributes_for :users
 end

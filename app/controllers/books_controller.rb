@@ -84,7 +84,7 @@ end
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :genre, :photo, :user_id)
+    params.require(:book).permit(:title, :author, :genre, :photo, :user_id, comments_attributes: [:id, :content])
   end
   def find_book
     @book = Book.find(params[:id])
