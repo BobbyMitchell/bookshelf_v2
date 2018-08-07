@@ -40,7 +40,14 @@ def create
         google_books << book
       end
     end
+
+    if google_books.empty?
+      flash.notice = "Couldn't find you're book, please try again."
+      redirect_to new_book_path
+    else
+
     first_book = google_books.first
+
     first_book.image_link(:zoom => 6)
     # title and autors changed from search terms to prevent duplication. ie having Tolkien and J R Tolkien being differant authors
     @book.title = first_book.title
@@ -59,7 +66,7 @@ def create
       render :new
     end
   end
-
+end
 
 
   def edit
