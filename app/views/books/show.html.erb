@@ -33,12 +33,14 @@
 <% end %>
 
 
-
+<!-- delete this -->
 <% @book.users.each do |user| %>
 <%= link_to user[:username], book_user_book_path(@book, @book.user_books)   %>
 <%= user.user_books.find{|f| f.book_id == @book.id}.rating %>
 <% end %>
 
+
+<!-- shows which other users have this book,there rating and a link to their books -->
 <% @book.users.each do |user| %>
 <% if user !=current_user %>
 <%= simple_form_for [@book, user], url: book_user_book_path(@book, user), method: :get  do |f| %>
@@ -49,7 +51,15 @@
 <% end %>
 
 
+<%= simple_form_for [@book, @comment], url: book_comments_path(@book, @comment), method: :post  do |f| %>
 
+<%= f.input :content %>
+<%= f.submit "Submit comments" %>
+<% end %>
+
+<% @book.comments.map do |comment| %>
+<h4><%= comment.user.username %> said: <%= comment.content %> </h4>
+<% end %>
 
 <h2><%= link_to "Edit this book", edit_book_path %></h2>
 <h2><%= link_to "Back to Library", books_path %></h2>
