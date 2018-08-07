@@ -18,6 +18,7 @@ end
 def show
   #this user_book is used in the _user_book_form to create a new user_book with the disired have_or_want
   @user_book = UserBook.new
+  @comment = Comment.new
 end
 
 def new

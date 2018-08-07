@@ -1,0 +1,5 @@
+<%= simple_form_for [@book, @comment], url: book_user_books_path(@book, @comment), method: :post  do |f| %>
+
+<%= f.input :content %>
+<%= f.submit "Submit Rating" %>
+<% end %>

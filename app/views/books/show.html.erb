@@ -33,7 +33,7 @@
 <% end %>
 
 
-
+<!-- delete this -->
 <% @book.users.each do |user| %>
 <%= link_to user[:username], book_user_book_path(@book, @book.user_books)   %>
 <%= user.user_books.find{|f| f.book_id == @book.id}.rating %>
@@ -46,6 +46,17 @@
 <%= f.submit "#{user[:username]}-#{user.user_books.find{|f| f.book_id == @book.id}.rating}" %>
 <% end %>
 <% end %>
+<% end %>
+
+
+<%= simple_form_for [@book, @comment], url: book_comments_path(@book, @comment), method: :post  do |f| %>
+
+<%= f.input :content %>
+<%= f.submit "Submit comments" %>
+<% end %>
+
+<% Comment.where(book_id = @book_id).each do |comment| %>
+<h3><%= comment.content %></h3>
 <% end %>
 
 
