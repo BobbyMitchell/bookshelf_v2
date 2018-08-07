@@ -11,22 +11,7 @@ class BooksController < ApplicationController
    @my_reading_list = current_user.user_books.where(have_or_want: false)
  end
 
- # def their_books
- #  raise
- #    @their_books = user_books.where(user_id == pararms[:user_id] && have_or_want == true )
- # end
-
-# def select_book(google_books)
-#   @google_books = []
-#     google_books.each do |book|
-#     @google_books << book
-#   end
-#   @google_books
-#   redirect_to select_book_books_path(@google_books)
-# end
-
-
-def index
+ def index
   @books = Book.all
 end
 
@@ -42,17 +27,19 @@ end
 def create
 
 
-    @book = Book.new(book_params)
-    # This capitalises the search terms to prevent duplicate books with differant letter cases
-    #title_cap = @book_search.title.split.map(&:capitalize).join(' ')
-    #author_cap = @book_search.author.split.map(&:capitalize).join(' ')
-    #@book = Book.find_or_create_by(title: title_cap, author: author_cap)
-
+  @book = Book.new(book_params)
     #search_terms varible made as GoogleBooks.search won't except variables
-    search_terms = "inauthor:#{@book.author}, intitle:#{@book.title}, subject: 'Fiction'"
+    search_terms = "inauthor:#{@book.author}, intitle:#{@book.title}, subject: 'Fiction' "
     title = @book.title
-    google_books = GoogleBooks.search(search_terms)
-    #redirect_to select_book_books_path(@google_books)
+    google_books_objects = GoogleBooks.search(search_terms)
+
+    #Google books tends to ingnore subject so this removes non fiction
+    google_books = []
+    google_books_objects.each do |book|
+      if book.categories == "Fiction"
+        google_books << book
+      end
+    end
     first_book = google_books.first
     first_book.image_link(:zoom => 6)
     # title and autors changed from search terms to prevent duplication. ie having Tolkien and J R Tolkien being differant authors
@@ -65,16 +52,10 @@ def create
       book.page_count = first_book.page_count
       book.isbn = first_book.isbn
       book.created_by = current_user.id
-      raise
     end
-
-    # if @book.save
-    #creates the user_books object
     if @book.save
-
-    #book_user = UserBook.create(book: @book, user: current_user, have_or_want: @book.have_read)
-    redirect_to book_path(@book)
-     else
+      redirect_to book_path(@book)
+    else
       render :new
     end
   end
