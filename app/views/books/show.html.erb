@@ -39,6 +39,8 @@
 <%= user.user_books.find{|f| f.book_id == @book.id}.rating %>
 <% end %>
 
+
+<!-- shows which other users have this book,there rating and a link to their books -->
 <% @book.users.each do |user| %>
 <% if user !=current_user %>
 <%= simple_form_for [@book, user], url: book_user_book_path(@book, user), method: :get  do |f| %>
@@ -56,7 +58,7 @@
 <% end %>
 
 <% Comment.where(book_id = @book_id).each do |comment| %>
-<h3><%= comment.content %></h3>
+<h4><%= comment.user.username %> said: <%= comment.content %></h4>
 <% end %>
 
 
