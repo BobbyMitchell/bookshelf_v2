@@ -5,21 +5,24 @@
 
 <div class="container">
 <h1>All Books....</h1>
-
-<h2><% @books.each do |book| %></h2>
-<h2><%= link_to book.title, book_path(book)  %></h2>
-<h2><%= book.author %></h2>
-<div>
-  <% if book.user_books.count(:rating) > 0 %>
-<h4><%= book.user_books.average(:rating).round(1) %> (<%= book.user_books.count(:rating)%> ratings)</h4>
-<% else %>
-<h4>Not rated yet.</h4>
+<% @books.each do |book| %>
+  <div class="card">
+    <div class="card-image">
+      <%=cl_image_tag(book.photo.path, width: 160, height: 260, crop: :fill)  %>
+    </div>
+    <div class="card-title">
+      <h4><%= link_to book.title, book_path(book)  %></h4>
+    </div>
+    <div class="card-author">
+      <%= book.author %>
+    </div>
+    <div class="card-rating">
+      <% if book.user_books.count(:rating) > 0 %>
+       <%= book.user_books.average(:rating).round(1) %> (<%= book.user_books.count(:rating)%> ratings)
+      <% end %>
+    </div>
+  </div>
 <% end %>
-</div>
-
-<%= cl_image_tag(book.photo.path, width: 128, height: 200, crop: :fill)  %>
-<% end %>
-
 <h2><%= link_to "Add a new book", new_book_path %></h2>
 <h2> <%= link_to "My Bookshelf", my_books_books_path %> </h2>
 <h2> <%= link_to "My Reading List", my_reading_list_books_path %> </h2>
