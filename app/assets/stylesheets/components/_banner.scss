@@ -1,0 +1,16 @@
+.banner {
+  color: black;
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 100%;
+  overflow:hidden;
+  height: 400px;
+
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
