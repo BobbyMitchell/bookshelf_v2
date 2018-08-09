@@ -1,0 +1,33 @@
+.alert-warning {
+  background: $brand-danger;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  height: 70px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  padding-top: 40px;
+}
+.alert-info {
+  background: $brand-success;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  height: 70px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  padding-top: 40px;
+}
+.alert {
+  background-color: $brand-info;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  height: 70px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  padding-top: 40px;
+}
