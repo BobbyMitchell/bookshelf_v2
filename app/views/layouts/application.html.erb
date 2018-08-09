@@ -3,15 +3,21 @@
 <head>
   <title>BookshelfV2</title>
   <%= csrf_meta_tags %>
-
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'  %>
+  <%= action_cable_meta_tag %>
   <%= cloudinary_js_config %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
 </head>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'  %>
 
 <body>
+  <div>
+    <%= render 'shared/navbar' %>
+  </div>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-  <%= yield %>
+  <div>
+    <%= yield %>
+  </div>
 </body>
 </html>

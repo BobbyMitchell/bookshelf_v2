@@ -1,0 +1,29 @@
+<div class="navbar-wagon">
+  <!-- Logo -->
+  <%= link_to root_path, class: "navbar-wagon-brand" do %>
+  <%= image_tag "logo_new.png" %>
+  <% end %>
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <% if user_signed_in? %>
+
+      <!-- Links when logged in -->
+      <%= link_to "Find a book", new_book_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "All Books", books_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-link" %>
+      <!-- Username with dropdown -->
+
+
+    <% else %>
+    <!-- Login link (when logged out) -->
+    <%= link_to "All Books", books_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-info" %>
+    <% end %>
+  </div>
+</div>
+  <!-- Dropdown list appearing on mobile only -->
+
+
