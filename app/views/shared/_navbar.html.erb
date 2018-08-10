@@ -16,6 +16,8 @@
 
       <!-- Links when logged in -->
       <%= link_to "Find a book", new_book_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "My Bookshelf", my_books_books_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "My Reading List", my_reading_list_books_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "All Books", books_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- Username with dropdown -->
