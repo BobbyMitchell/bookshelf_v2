@@ -8,8 +8,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-family: 'Oswald', sans-serif;
 }
-
+.navbar-wagon-left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.name {
+  color: $brand-info;
+}
 /* Logo */
 .navbar-wagon-brand img {
   height: 50px;
