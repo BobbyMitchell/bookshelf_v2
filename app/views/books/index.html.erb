@@ -13,15 +13,19 @@
       <%=cl_image_tag(book.photo.path, width: 160, height: 260, crop: :fill)  %>
     </div>
     <div class="card-title">
+      <div class="text-limit">
       <%= link_to book.title, book_path(book)  %>
+      </div>
     </div>
     <div class="card-author">
-      <%= book.author %>
+      <%=book.author%>
     </div>
     <div class="card-rating">
-      <% if book.user_books.count(:rating) > 0 %>
-       <%= book.user_books.average(:rating).round(1) %> (<%= book.user_books.count(:rating)%> ratings)
+     <div class="card-rating-inner">
+        <% if book.user_books.count(:rating) > 0 %>
+        <%=book.user_books.average(:rating).round(1) %> (<%= book.user_books.count(:rating) %> ratings)
       <% end %>
+      </div>
     </div>
   </div>
   <% end %>
