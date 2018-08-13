@@ -1,16 +1,32 @@
-<h1>My Bookshelf</h1>
 
-<% @my_books.each do |user_book| %>
-<h2><%= link_to user_book.book.title, book_path(user_book.book)%></h2>
-<h2><%= user_book.book.author %></h2>
-
-<% if user_book.book.user_books.count(:rating) > 0 %>
-<h4>  <%= user_book.book.user_books.average(:rating).round(1) %> (<%= user_book.book.user_books.count(:rating) %> rating)</h4>
-<% else %>
-<h4>Not rated yet</h4>
-<% end %>
-
-<%= cl_image_tag(user_book.book.photo.path, width: 128, height: 200, crop: :fill)  %>
-<% end %>
-
-<h2><%= link_to "Back to Library", books_path %></h2>
+<div class="container">
+  <div class="title">
+    <h1>My Bookshelf</h1>
+  </div>
+  <% @my_books.each do |user_book| %>
+   <div class="col-xs-6 col-sm-6 col-md-2">
+    <%= link_to book_path(user_book.book) do %>
+      <div class="card">
+        <div class="card-image" >
+          <%=cl_image_tag(user_book.book.photo.path, width: 160, height: 260, crop: :fill)  %>
+        </div>
+        <div class="card-title">
+          <div class="text-limit">
+            <%= link_to user_book.book.title, book_path(user_book.book)%>
+          </div>
+        </div>
+        <div class="card-author">
+          <%= user_book.book.author %>
+        </div>
+        <div class="card-rating">
+          <div class="card-rating-inner">
+            <% if user_book.book.user_books.count(:rating) > 0 %>
+              <%= user_book.book.user_books.average(:rating).round(1) %> (<%= user_book.book.user_books.count(:rating) %> rating)
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

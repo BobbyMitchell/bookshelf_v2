@@ -12,9 +12,9 @@
     <div class="card-image" >
       <%=cl_image_tag(book.photo.path, width: 160, height: 260, crop: :fill)  %>
     </div>
-    <div class="card-title">
+    <div id="card-title">
       <div class="text-limit">
-      <%= link_to book.title, book_path(book)  %>
+      <%= book.title  %>
       </div>
     </div>
     <div class="card-author">
