@@ -3,7 +3,7 @@
 
 <!-- Left Navigation -->
   <!-- Logo -->
-<div class="navbar-wagon-left">
+<div class="navbar-wagon-left hidden-xs hidden-sm">
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
   <%=image_tag "planet01.png" %>
   <% end %>
@@ -31,7 +31,42 @@
     <%= link_to "Sign up", new_user_registration_path, class: "btn btn-info" %>
     <% end %>
   </div>
-</div>
+
   <!-- Dropdown list appearing on mobile only -->
+  <!-- <div class="navbar-wagon-mobile"> -->
+  <div class="navbar-wagon-left-mobile hidden-md hidden-lg">
+
+    <%= link_to root_path, class: "navbar-wagon-brand" do %>
+    <%=image_tag "planet01.png" %>
+    <% end %>
+    <div class="name">  Worlds Away </div>
+     </div>
+<div class="navbar-wagon-item hidden-md hidden-lg">
+    <div class="dropdown">
+      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+      <% if user_signed_in? %>
+        <li> <%= link_to "Find a book", new_book_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+        <li><%= link_to "My Bookshelf", my_books_books_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+        <li><%= link_to "My Reading List", my_reading_list_books_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+        <li><%= link_to "Library", books_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+        <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-wagon-item navbar-wagon-link" %></li>
+
+        <% else %>
+        <!-- Login link (when logged out) -->
+          <li><%= link_to "Library", books_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+          <li><%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+
+          <li><%= link_to "Sign up", new_user_registration_path, class: "btn btn-info" %><li>
+        <% end %>
+        </ul>
+        </div>
+      <!-- </div> -->
+    </div>
+
+</div>
+
+
+
 
 
