@@ -61,12 +61,17 @@
 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+
+  .containter-mobile {
+    display: flex;
+
+  }
   .card {
   position: relative;
   background-color: white;
   height: 768px;
-  width: 300px;
+  width: 340px;
 
   border: 1px solid;
   border-radius: 4px;
@@ -84,9 +89,10 @@
   // box-shadow: 2px 2px 2px rgba(0,0,0,0.6);
 }
 
-.card-image{
-  width: 320 !important;
-  height: 520 !important;
+img {
+  width: 320px;
+  height: 520px;
+
 }
 }
 
