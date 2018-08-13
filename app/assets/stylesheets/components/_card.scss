@@ -61,7 +61,7 @@
 
 }
 
-@media (max-width: 768px) {
+@media(max-width: 768px) {
 
   .containter-mobile {
     display: flex;
@@ -70,8 +70,8 @@
   .card {
   position: relative;
   background-color: white;
-  height: 768px;
-  width: 340px;
+  height: 582px;
+  width: 250px;
 
   border: 1px solid;
   border-radius: 4px;
@@ -81,7 +81,7 @@
   margin: 10px;
   color: $gray-base;
   font-family: 'Oswald', sans-serif;
-  font-size: 14px;
+  font-size: 22px;
   padding: 10px;
   overflow:hidden;
   transition: all 0.3s ease;
@@ -90,9 +90,35 @@
 }
 
 img {
-  width: 320px;
-  height: 520px;
+  width: 224px;
+  height: 364px;
+}
+#card-title {
+  // position: absolute;
+
+  margin-top: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+
 
 }
+.text-limit{
+     height: 90px;
+     //white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
+.card-author {
+  letter-spacing: 1px;
+}
+
+.card-rating {
+  letter-spacing: 1px;
+  position: absolute;
+  bottom: 10px;
+  //temp fix a .card-rating-inner will not center the text
+  left: 50px;
+}
+
 }
 
