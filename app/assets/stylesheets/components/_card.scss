@@ -16,17 +16,19 @@
   padding: 10px;
   overflow:hidden;
   transition: all 0.3s ease;
+  text-decoration: none;
   // box-shadow: 2px 2px 2px rgba(0,0,0,0.6);
 }
 
 .card-image{
 }
-.card-title {
+#card-title {
   // position: absolute;
 
   margin-top: 10px;
   font-weight: bold;
   letter-spacing: 1px;
+
 }
 .text-limit{
      height: 56px;
@@ -53,6 +55,7 @@
 
 .card:hover {
   border-color: white;
+  text-decoration: none;
 
 }
 
