@@ -1,4 +1,4 @@
-my_reading_list.html.erb
+
 <h1>My Reading List</h1>
 
 <% @my_reading_list.each do |user_book| %>
@@ -15,4 +15,4 @@ my_reading_list.html.erb
 <%= cl_image_tag(user_book.book.photo.path, width: 128, height: 200, crop: :fill)  %>
 <% end %>
 
-<h2><%= link_to "Back to Library", books_path %></h2>
+
