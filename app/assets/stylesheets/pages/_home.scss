@@ -10,3 +10,17 @@ h1 {
 // }
 
 // }
+.content-box {
+  background-color: white;
+  box-shadow: 1px 1px 1px $gray-base;
+  padding: 50px 15px 10px 20px;
+  margin-bottom: 20px;
+  margin-top: 70px;
+  text-align: left;
+  p {
+    margin: 0px 0 5px;
+  }
+  i {
+    color: black;
+  }
+}
