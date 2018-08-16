@@ -1,66 +1,84 @@
-
-<h1><%= @book.title %></h1>
-<h1><%= "by #{@book.author}"  %></h1>
-<h2><%= @book.genre %></h2>
-
-
+<div class="container">
+  <!-- Left columns -->
+  <div class="col-xs-12 col-sm-6">
 <!-- display current users rating of the book if it exitists -->
-<% if user_signed_in? %>
-<% if current_user.books.include? @book  %>
-<% if current_user.user_books.find{|f| f.book_id == @book.id}.rating != nil %>
-<h2>Your rating = <%= current_user.user_books.find{|f| f.book_id == @book.id}.rating %> </h2>
-<% end %>
-<% end %>
-<% end %>
-<div>
-  <% if @book.user_books.count(:rating) > 0 %>
-  <h4> Avg Rating =<%= @book.user_books.average(:rating).round(1) %> from <%= @book.user_books.count(:rating)  %> ratings</h4>
-  <% else %>
-
-  <% end %>
-</div>
-  <!-- If statement to identify if the books has just been added to give option to delete if wrong book -->
-  <% if user_signed_in? %>
-    <% if @book.created_by == current_user.id && @book.user_books.count == 0 && @book == Book.last %>
-        <h2><%= link_to "Not the book you're looking for?", book_path(@book), method: :delete  %></h2>
-    <% end %>
-  <% end %>
-
+    <div class ="content-box">
+     <!-- If statement to identify if the books has just been added to give option to delete if wrong book -->
+      <% if user_signed_in? %>
+        <% if @book.created_by == current_user.id && @book.user_books.count == 0 && @book == Book.last %>
+          <div class ="content-box">
+            <h2><%= link_to "Not the book you're looking for?", book_path(@book), method: :delete  %></h2>
+          </div>
+        <% end %>
+      <% end %>
 <!-- book cover -->
-<%= cl_image_tag(@book.photo.path, width: 256, height: 400, crop: :fill)  %>
-<!-- book desription etc from google -->
-<p><%= @book.description %></p>
-<h4>Page count =<%= @book.page_count %>. ISBN =<%= @book.isbn %></h4>
+      <%= cl_image_tag(@book.photo.path, width: 320, height: 500, crop: :fill)  %>
+      <!-- if user signed in and rated this book show rating -->
+      <% if user_signed_in? %>
+        <% if current_user.books.include? @book  %>
+          <% if current_user.user_books.find{|f| f.book_id == @book.id}.rating != nil %>
+            <h2>Your rating = <%= current_user.user_books.find{|f| f.book_id == @book.id}.rating %> </h2>
+          <% end %>
+        <% end %>
+      <% end %>
+    <div>
+      <% if @book.user_books.count(:rating) > 0 %>
+          <h4> Avg Rating =<%= @book.user_books.average(:rating).round(1) %> from <%= @book.user_books.count(:rating)  %> ratings</h4>
+        1<% end %>
+      </div>
+    </div>
+  </div>
 
+
+
+<!-- right colunms -->
+
+  <div class="col-xs-12 col-sm-6">
+<!-- book desription etc from google -->
+    <div class ="content-box">
+      <p><%= @book.description %></p>
+      <h4>Page count =<%= @book.page_count %>. ISBN =<%= @book.isbn %></h4>
+    </div>
 <!-- options to add remove for bookshelf etc only availible if signed in -->
-<% if user_signed_in? %>
-<%= render "user_book_form" %>
-<% end %>
+
+    <% if user_signed_in? %>
+      <%= render "user_book_form" %>
+    <% end %>
 
 
 
 
 
 <!-- shows which other users have this book,there rating and a link to their books -->
-<% @book.users.each do |user| %>
-<% if user !=current_user %>
-<%= simple_form_for [@book, user], url: book_user_book_path(@book, user), method: :get  do |f| %>
-<%= f.input :have_or_want, :as => :hidden, :input_html => { :value => true } %>
-<%= f.submit "#{user[:username]}-#{user.user_books.find{|f| f.book_id == @book.id}.rating}" %>
-<% end %>
-<% end %>
-<% end %>
+  <% if @book.users.length > 0 %>
+    <div class ="content-box">
+      <h4>Other users who have this book:</h4>
+      <% @book.users.each do |user| %>
+        <% if user !=current_user %>
+          <%= simple_form_for [@book, user], url: book_user_book_path(@book, user), method: :get  do |f| %>
+          <%= f.input :have_or_want, :as => :hidden, :input_html => { :value => true } %>
+          <%= f.submit "#{user[:username]}-#{user.user_books.find{|f| f.book_id == @book.id}.rating}" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 
 
-<%= simple_form_for [@book, @comment], url: book_comments_path(@book, @comment), method: :post  do |f| %>
-<%= f.input :content %>
-<%= f.submit "Submit comments" %>
-<% end %>
+  <div class ="content-box">
+    <%= simple_form_for [@book, @comment], url: book_comments_path(@book, @comment), method: :post  do |f| %>
+      <%= f.input :content %>
+      <%= f.submit "Submit comments" %>
+    <% end %>
+  <% @book.comments.map do |comment| %>
+  <h4><%= comment.user.username %> said: <%= comment.content %> </h4>
+  <% end %>
+  </div>
+</div>
+</div>
 
-<% @book.comments.map do |comment| %>
-<h4><%= comment.user.username %> said: <%= comment.content %> </h4>
-<% end %>
+<!-- comments secion -->
+<div class="container">
 
-<h2><%= link_to "Edit this book", edit_book_path %></h2>
-<h2><%= link_to "Back to Library", books_path %></h2>
-<h2> <%= link_to "My Bookshelf", my_books_books_path %> </h2>
+
+</div>
