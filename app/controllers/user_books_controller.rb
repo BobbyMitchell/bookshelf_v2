@@ -1,6 +1,12 @@
 class UserBooksController < ApplicationController
 
 
+  def their_books
+    x = params[:user_id].to_i
+    @their_books = UserBook.where(user: x)
+  end
+
+
   def index
     raise
   end
