@@ -3,16 +3,16 @@
   <div class="title">
     <h1>My Bookshelf</h1>
   </div>
-  <% @my_books.each do |user_book| %>
+    <% @my_books.each do |user_book| %>
    <div class="col-xs-6 col-sm-6 col-md-2">
     <%= link_to book_path(user_book.book) do %>
       <div class="card">
         <div class="card-image" >
           <%=cl_image_tag(user_book.book.photo.path, width: 160, height: 260, crop: :fill)  %>
         </div>
-        <div class="card-title">
+        <div id="card-title">
           <div class="text-limit">
-            <%= link_to user_book.book.title, book_path(user_book.book)%>
+            <%= user_book.book.title%>
           </div>
         </div>
         <div class="card-author">
