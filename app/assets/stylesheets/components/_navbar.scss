@@ -10,13 +10,16 @@
   justify-content: space-between;
   font-family: 'Oswald', sans-serif;
   color: $brand-info;
+  position: relative;
 }
 .navbar-wagon-left {
   display: inline-flex;
-  align-items: center;
+  align-items: left;
   justify-content: space-between;
+
 }
 .name {
+
   color: $brand-info;
   font-size: 30px;
 }
@@ -36,6 +39,8 @@
 
 /* Right section */
 .navbar-wagon-right {
+  position: absolute;
+  right: 1px;
   display: flex;
   align-items: center;
   justify-content: space-between;
