@@ -1,4 +1,4 @@
-
+<!-- <%= link_to userbook.book.title, book_path(userbook.book)%> -->
 
 Log in Log out
 <% if user_signed_in? %>
