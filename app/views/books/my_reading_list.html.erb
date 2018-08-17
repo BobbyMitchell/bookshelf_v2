@@ -1,4 +1,5 @@
 
+<div class="container">
 <h1>My Reading List</h1>
 
 <% @my_reading_list.each do |user_book| %>
@@ -14,5 +15,5 @@
 
 <%= cl_image_tag(user_book.book.photo.path, width: 128, height: 200, crop: :fill)  %>
 <% end %>
-
+</div>
 
