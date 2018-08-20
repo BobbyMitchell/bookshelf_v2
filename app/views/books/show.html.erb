@@ -12,8 +12,11 @@
         <% end %>
       <% end %>
 <!-- book cover -->
-      <%= cl_image_tag(@book.photo.path, width: 320, height: 500, crop: :fill)  %>
+      <div class="img-show">
+        <%= cl_image_tag(@book.photo.path, width: 320, height: 500, crop: :fill)  %>
+      </div>
       <!-- if user signed in and rated this book show rating -->
+      <div class="rating-show">
       <% if user_signed_in? %>
         <% if current_user.books.include? @book  %>
           <% if current_user.user_books.find{|f| f.book_id == @book.id}.rating != nil %>
@@ -22,13 +25,17 @@
         <% end %>
       <% end %>
     <div>
-      <% if @book.user_books.count(:rating) > 0 %>
+      <% if @book.user_books.count(:rating) == 1 %>
+          <h4> Avg Rating =<%= @book.user_books.average(:rating).round(1) %> from <%= @book.user_books.count(:rating)  %> rating</h4>
+          <% else @book.user_books.count(:rating) > 1 %>
           <h4> Avg Rating =<%= @book.user_books.average(:rating).round(1) %> from <%= @book.user_books.count(:rating)  %> ratings</h4>
-        1<% end %>
+
+        <% end %>
+
       </div>
     </div>
   </div>
-
+</div>
 
 
 <!-- right colunms -->
