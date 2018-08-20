@@ -74,7 +74,8 @@
 
   <div class ="content-box">
     <%= simple_form_for [@book, @comment], url: book_comments_path(@book, @comment), method: :post  do |f| %>
-      <%= f.input :content %>
+
+      <%= f.input :content, :label => "Write a comment or review:" %>
       <%= f.submit "Submit comments" %>
     <% end %>
   <% @book.comments.map do |comment| %>
